@@ -1,11 +1,35 @@
-import express from 'express'
-const app = express()
-const port = 3000
+import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
+import { ZodError } from 'zod';
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+//routers
+import userRouter from './user/router';
+import categoryRouter from './category/router';
+
+const app = express();
+
+app.use(express.json());
+app.use(cors());
+
+//middleware
+app.use('/user', userRouter);
+app.use('/category', categoryRouter);
+
+//error handling
+app.use((error: any, req: Request, res: Response, next: NextFunction) => {
+  let message : string;
+  let statusCode: number;
+  if(error instanceof ZodError) {
+    message = JSON.parse(error.message)[0].message;
+    statusCode = 400;
+  }
+  else {
+    message = error.message;
+    statusCode = error.status?? 500;
+  }
+  res.status(statusCode).json({ message: message });
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+app.listen(3000, () => {
+  console.log(`app listening on port 3000`)
 })
