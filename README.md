@@ -34,16 +34,9 @@ This will create users:
 
 | email | password    | permissions    |
 | :---:   | :---: | :---: |
-|category@gmail.com | 123456   | CREATE_CATEGORY   |
-|      |       |    UPDATE_CATEGORY   |
-|product@gmail.com   |  123456 |CREATE_PRODUCT   |
-|      |       |    UPDATE_PRODUCT   |
-|admin@gmail.com | 123456   | CREATE_CATEGORY   |
-|      |       |    UPDATE_CATEGORY   |
-|      |       |    DELETE_CATEGORY   |
-|      |       |    CREATE_PRODUCT   |
-|      |       |    UPDATE_PRODUCT   |
-|      |       |    DELETE_PRODUCT   |
+|category@gmail.com | 123456  | CREATE_CATEGORY <br> UPDATE_CATEGORY  |
+|product@gmail.com   |  123456 |CREATE_PRODUCT   <br>  UPDATE_PRODUCT   |
+|admin@gmail.com | 123456   | CREATE_CATEGORY  <br>  UPDATE_CATEGORY   <br> DELETE_CATEGORY   <br> CREATE_PRODUCT   <br> UPDATE_PRODUCT   <br> DELETE_PRODUCT   |
 
 
 
