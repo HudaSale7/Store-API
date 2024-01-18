@@ -29,6 +29,25 @@ $ npx prisma db push --force-reset
 
 - seed roles and admin user
 
+This will create users:
+
+
+| email | password    | permissions    |
+| :---:   | :---: | :---: |
+|category@gmail.com | 123456   | CREATE_CATEGORY   |
+|      |       |    UPDATE_CATEGORY   |
+|product@gmail.com   |  123456 |CREATE_PRODUCT   |
+|      |       |    UPDATE_PRODUCT   |
+|admin@gmail.com | 123456   | CREATE_CATEGORY   |
+|      |       |    UPDATE_CATEGORY   |
+|      |       |    DELETE_CATEGORY   |
+|      |       |    CREATE_PRODUCT   |
+|      |       |    UPDATE_PRODUCT   |
+|      |       |    DELETE_PRODUCT   |
+
+
+
+
 ```bash
 $ npx prisma db seed
 ```
@@ -43,5 +62,7 @@ $ yarn dev
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://api.postman.com/collections/25854021-94efd612-963a-4bf9-a743-4ba72bdcae3c?access_key=PMAT-01HMEJF8DJXJS526PGPKYBAMV3)
 
-
+Don't forget to login with provided seeded emails and use the returned token in Authorization tab api key \
+key : token \
+Value : <returned_token>
 
