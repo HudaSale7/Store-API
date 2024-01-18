@@ -43,10 +43,13 @@ const updateCategory = async (category: {id: number, name: string}) => {
   return updatedCategory;
 }
 
-const getAllCategory = async (userId: number) => {
+const getAllCategory = async (userId: number, include: number) => {
   const categories = await prisma.category.findMany({
     where: {
       userId: userId,
+    },
+    include: {
+      products: include === 1,
     }
   });
 

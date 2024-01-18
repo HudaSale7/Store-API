@@ -53,6 +53,9 @@ const getProduct = async (productId: number) => {
     where: {
       id: productId,
     },
+    include: {
+      category: true,
+    }
   });
 
   if(!product) throw errorFactory("Server Error");
@@ -64,6 +67,9 @@ const getAllProduct = async (userId: number) => {
     where:{
       userId: userId,
     },
+    include: {
+      category: true,
+    }
   });
 
   if(!products) throw errorFactory("Server Error");

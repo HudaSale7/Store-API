@@ -1,6 +1,7 @@
 import { prisma } from "./db"
 import { errorFactory } from "./errorFactory";
 
+// Check if user has permission and throw error if not allowed 
 export const checkAuthorization = async (userId: number, permission: string) => {
   const isUserRoleExist = await prisma.userRole.findUnique({
     where: {
@@ -8,5 +9,5 @@ export const checkAuthorization = async (userId: number, permission: string) => 
     }
   });
 
-  if(!isUserRoleExist) throw errorFactory("Permission is not allowed");
+  if(!isUserRoleExist) throw errorFactory("Permission is not allowed", 401);
 }

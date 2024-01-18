@@ -9,7 +9,7 @@ const register = async (user: {name: string, email: string, password: string}) =
         email: user.email
     }
   });
-  if(isUserExist) throw errorFactory("User is Exist");
+  if(isUserExist) throw errorFactory("User is Exist", 409);
 
   const hashedPassword = await bcrypt.hash(user.password, 12);
   user.password = hashedPassword;
@@ -30,10 +30,10 @@ const login = async (loggedUser: {email: string, password: string}) => {
         email: loggedUser.email
     }
   });
-  if (!user) throw errorFactory("Wrong Email", 422);
+  if (!user) throw errorFactory("Wrong Email", 401);
 
   const isPasswordCorrect = await bcrypt.compare(loggedUser.password, user.password);
-  if (!isPasswordCorrect) throw errorFactory("Wrong Password", 422);
+  if (!isPasswordCorrect) throw errorFactory("Wrong Password", 401);
 
   const token = createToken(user.email, user.id);
 

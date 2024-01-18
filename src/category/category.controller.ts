@@ -55,7 +55,8 @@ const updateCategory = async (req: any, res: any, next: NextFunction) => {
 const getAllCategory = async (req: any, res: any, next: NextFunction) => {
   try {
     const userId = req.userId;
-    const categories = await categoryService.getAllCategory(userId);
+    const include = req.query.include_products?? "0";
+    const categories = await categoryService.getAllCategory(userId, Number(include));
     res.status(200).json({categories: categories});
   } catch(error) {
     next(error);
