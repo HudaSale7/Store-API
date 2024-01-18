@@ -1,6 +1,6 @@
 import { NextFunction } from "express";
 import categoryService from "./category.service";
-import { createCategoryScheme } from "./category.types";
+import { categoryScheme } from "./category.types";
 import { validator } from "../utils/validator";
 import { checkAuthorization } from "../utils/checkAuthorization";
 
@@ -11,7 +11,7 @@ const createCategory = async (req: any, res: any, next: NextFunction) => {
 
     await checkAuthorization(userId, "CREATE_CATEGORY");
 
-    validator(req, createCategoryScheme);
+    validator(req, categoryScheme);
     const category = await categoryService.createCategory(categoryName, userId);
     
     res.status(200).json({category: category});
@@ -42,7 +42,7 @@ const updateCategory = async (req: any, res: any, next: NextFunction) => {
     const name = req.body.name
 
     await checkAuthorization(userId, "UPDATE_CATEGORY");
-    validator(req, createCategoryScheme);
+    validator(req, categoryScheme);
 
     const category = await categoryService.updateCategory({id: Number(categoryId), name: name});
     

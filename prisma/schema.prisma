@@ -29,7 +29,7 @@ model Category {
   id Int @id @default(autoincrement())
   name String
   userId Int
-  users User @relation(fields:[userId], references: [id])
+  user User @relation(fields:[userId], references: [id])
   products Product[]
 }
 
@@ -40,14 +40,14 @@ model Product {
   description String  
   userId Int
   categoryId Int
-  users User @relation(fields:[userId], references: [id])
-  categories Category @relation(fields:[categoryId], references: [id], onDelete: Cascade)
+  user User @relation(fields:[userId], references: [id])
+  category Category @relation(fields:[categoryId], references: [id], onDelete: Cascade)
 }
 
 model UserRole {
   userId Int
   permission String
-  roles Role @relation(fields: [permission], references: [permission])
-  users User @relation(fields: [userId], references: [id])
+  role Role @relation(fields: [permission], references: [permission])
+  user User @relation(fields: [userId], references: [id])
   @@unique([permission, userId])
 }

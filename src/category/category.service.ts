@@ -4,12 +4,12 @@ import { errorFactory } from "../utils/errorFactory";
 const createCategory = async ( categoryName: string, userId: number) => {
   const createdCategory = await prisma.category.create({
       data: {
-        users: {
+        user: {
           connect: {
             id: userId,
           },
         },
-        name:categoryName,
+        name: categoryName,
       },
   });
 

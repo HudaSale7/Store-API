@@ -5,6 +5,7 @@ import { ZodError } from 'zod';
 //routers
 import userRouter from './user/user.router';
 import categoryRouter from './category/category.router';
+import productRouter from './product/product.router';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 //middleware
 app.use('/user', userRouter);
 app.use('/category', categoryRouter);
+app.use('/product', productRouter);
 
 //error handling
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
