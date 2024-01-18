@@ -10,7 +10,7 @@
 - cd into the repo
 
 ```bash
-$ cd store-api
+$ cd Store-API
 ```
 
 - install dependencies
