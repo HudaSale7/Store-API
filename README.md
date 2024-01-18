@@ -27,7 +27,7 @@ $ yarn
 $ npx prisma db push --force-reset
 ```
 
-- seed roles and admin user
+- seed roles and users
 
 This will create users:
 
