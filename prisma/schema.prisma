@@ -21,8 +21,7 @@ model User {
 }
 
 model Role {
-  id Int @id @default(autoincrement())
-  permission String @unique
+  permission String @id
   users UserRole[]
 } 
 
@@ -47,8 +46,8 @@ model Product {
 
 model UserRole {
   userId Int
-  roleId Int
-  roles Role @relation(fields: [roleId], references: [id])
+  permission String
+  roles Role @relation(fields: [permission], references: [permission])
   users User @relation(fields: [userId], references: [id])
-  @@unique([roleId, userId])
+  @@unique([permission, userId])
 }

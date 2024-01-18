@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { prisma } from "../utils/db";
 
 export const userSignupSchema = z.object({
     body: z.object({

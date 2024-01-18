@@ -3,8 +3,8 @@ import cors from 'cors';
 import { ZodError } from 'zod';
 
 //routers
-import userRouter from './user/router';
-import categoryRouter from './category/router';
+import userRouter from './user/user.router';
+import categoryRouter from './category/category.router';
 
 const app = express();
 
@@ -17,14 +17,15 @@ app.use('/category', categoryRouter);
 
 //error handling
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
-  let message : string;
-  let statusCode: number;
+  let message  = "";
+  let statusCode = 500;
+  const somethingWrong = "Something Went Wrong Please Try Again Later";
   if(error instanceof ZodError) {
     message = JSON.parse(error.message)[0].message;
     statusCode = 400;
   }
   else {
-    message = error.message;
+    message = error.message?? somethingWrong;
     statusCode = error.status?? 500;
   }
   res.status(statusCode).json({ message: message });
